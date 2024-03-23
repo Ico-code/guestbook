@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Book</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/layout.css">
+</head>
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <article class="d-flex flex-column justify-content-center align-items-center">
+        <section class="w-100 secondary-background d-flex flex-column justify-content-center align-items-center px-4 py-5">
+            <h1>Welcome to our Guesbook site!</h1>
+            <p class="introductionMessage">
+                On our site you can check messages sent by out users and send them yourself!
+            </p>
+            <a class="btn btn-primary text-white fw-bolder mt-3" href="/guestbook">
+                Click me to view Messages
+            </a>
+        </section>
+        <section id="homepageCreateMSG" class="w-100 tertiary-background d-flex justify-content-center align-items-center px-4 py-5">
+            <div class="d-flex justify-content-center align-items-center flex-column p-2 rightSideContainer">
+                <h2>
+                    Want to Create a New Message Using Ajax?
+                </h2>
+                <p class="introductionMessage">
+                    If you want to create a new message using AJAX just press the button below.
+                </p>
+                <a class="btn btn-primary text-white fw-bolder mt-3" href="/ajaxmessage">
+                    Click me to Create a Message Using AJAX
+                </a>
+            </div>
+            <div class="d-flex justify-content-center align-items-center flex-column p-2 leftSideContainer">
+                <h2>
+                    Want to Create a New Message Using POST?
+                </h2>
+                <p class="introductionMessage">
+                    If you want to create a new message using POST just press the button below.
+                </p>
+                <a class="btn btn-primary text-white fw-bolder mt-3" href="/newmessage">
+                    Click me to Create a Message Using POST
+                </a>
+            </div>
+        </section>
+    </article>
+    <%- include('partials/footer.ejs') %>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Book</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/layout.css">
+</head>
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <article id="contentContainer" class="secondary-background p-3 pb-5">
+        <table id="messagesTable" class="ms-auto me-auto table table-light table-striped table-bordered">
+            <tr>
+                <th class="fw-bold">
+                    #
+                </th>
+                <th class="fw-bold">
+                    Username
+                </th>
+                <th class="fw-bold">
+                    Country
+                </th>
+                <th class="fw-bold">
+                    Date
+                </th>
+                <th class="fw-bold">
+                    Message
+                </th>
+            </tr>
+            <% data.forEach(message => { %>
+            <tr>
+                <td>
+                    <%= message.id %>
+                </td>
+                <td>
+                    <%= message.username %>
+                </td>
+                <td>
+                    <%= message.country %>
+                </td>
+                <td>
+                    <%= message.date %>
+                </td>
+                <td>
+                    <%= message.message %>
+                </td>
+            </tr>
+            <% }); %>
+        </table>
+    </article>
+    <%- include('partials/footer.ejs') %>
+</body>
+</html>

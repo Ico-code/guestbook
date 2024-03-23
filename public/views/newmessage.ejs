@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guest Book</title>
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+  </head>
+  <body>
+    <%- include('partials/navbar.ejs') %>
+    <article id="contentContainer" class="secondary-background">
+      <div class="p-3">
+        <h2 class="mb-4">New Message Form</h2>
+        <form action="/newmessage" method="post">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="country" class="form-label">Country:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="country"
+              name="country"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="message" class="form-label">Message:</label>
+            <textarea
+              class="form-control"
+              id="message"
+              name="message"
+              rows="4"
+              cols="50"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary submitBTN">Send</button>
+        </form>
+      </div>
+    </article>
+    <script>
+      function closeStatusMessage() {
+        const statusMessageElement = document.getElementById("StatusMSG");
+        if (statusMessageElement) {
+          statusMessageElement.style.display = "none"; // Set display to none to hide
+        } else {
+          console.warn('Element with ID "StatusMSG" not found.'); // Informative warning
+        }
+      }
+    </script>
+    <% if(statusMSG.length > 0){ %>
+    <div
+      id="StatusMSG"
+      class="flex-column position-absolute mt-5 start-50 end-50 bottom-50 tertiary-background p-3 border border-secondary rounded align-items-center justify-content-center"
+    >
+      <p class="w-100 text-center mb-2"><%= statusMSG %></p>
+      <button class="btn btn-danger p-1" onclick="closeStatusMessage()">
+        Close
+      </button>
+    </div>
+    <%}%> <%- include('partials/footer.ejs') %>
+  </body>
+</html>

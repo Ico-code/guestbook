@@ -1,0 +1,179 @@
+:root {
+    --main-background: rgb(255, 123, 35);
+    --secondary-background: rgb(255, 245, 195);
+    --tertiary-background: rgb(237, 252, 155);
+}
+
+body, html {
+    height: 100%;
+}
+
+.main-background {
+    background-color: var(--main-background);
+}
+
+.secondary-background {
+    background-color: var(--secondary-background);
+}
+
+.tertiary-background {
+    background-color: var(--tertiary-background);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav {
+    padding: 10px;
+}
+
+ul a {
+    margin-left: 10px;
+}
+
+.navLink {
+    font-weight: 700;
+    font-size: 1rem;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 10px;
+    transition: 0.25s background-color;
+}
+
+.navLink:hover {
+    background-color: rgb(133, 62, 255);
+}
+
+.introductionMessage {
+    max-width: 425px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+}
+
+header {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+}
+
+header, footer{
+    min-height: 50px;
+    max-height: 50px;
+}
+
+.rightSideContainer {
+    margin-right: 3rem;
+    margin-bottom: 5rem;
+}
+
+
+.leftSideContainer {
+    margin-left: 3rem;
+    margin-bottom: 5rem;
+}
+
+p {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.submitBTN {
+    width: 120px;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+#StatusMSG {
+    display: none;
+    min-width: fit-content;
+    width: 500px;
+    min-height: fit-content;
+    transform: translateX(-50%)
+}
+
+#homepageCreateMSG {
+    flex-direction: row;
+}
+
+article {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    min-height: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+#contentContainer > *, #homepageCreateMSG > * {
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+section {
+    min-height: 50vh;
+    overflow-x: auto;
+    overflow-y: auto;
+
+}
+
+h1,h2 {
+    text-align: center;
+}
+
+#messagesTable {
+    max-width: 75%;
+}
+
+@media only screen and (max-width:900px) {
+    #messagesTable {
+        max-width: 100%;
+    }
+}
+
+
+@media only screen and (max-width:620px) {
+    header, footer{
+        min-height: 50px;
+        max-height: 70px;
+    }
+    article{
+        margin-top: 70px;
+    }
+    #homepageCreateMSG {
+        flex-direction: column;
+    }
+    .rightSideContainer {
+        margin-right: 0rem;
+    }
+    .leftSideContainer {
+        margin-left: 0rem;
+    }
+
+
+}
+
+@media only screen and (max-width:533px) {
+    header, footer{
+        min-height: 50px;
+        max-height: 80px;
+    }
+    article{
+        margin-top: 80px;
+    }
+
+}
