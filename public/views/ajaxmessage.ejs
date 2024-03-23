@@ -21,6 +21,7 @@
               id="username"
               name="username"
             />
+            <small id="usernameError" class="text-danger"></small>
           </div>
 
           <div class="mb-3">
@@ -31,6 +32,7 @@
               id="country"
               name="country"
             />
+            <small id="countryError" class="text-danger"></small>
           </div>
 
           <div class="mb-3">
@@ -42,6 +44,7 @@
               rows="4"
               cols="50"
             ></textarea>
+            <small id="messageError" class="text-danger"></small>
           </div>
 
           <button class="btn btn-primary submitBTN" onclick="submitForm()">
@@ -60,13 +63,40 @@
       function submitForm() {
         let form = document.getElementById("ajaxform");
 
-        // Validate form fields
         let username = document.getElementById("username").value.trim();
         let country = document.getElementById("country").value.trim();
         let message = document.getElementById("message").value.trim();
+        let hasError = false;
 
-        if (username === "" || country === "" || message === "") {
-          alert("Please fill in all fields.");
+        // Error checking for username
+        if (username === "") {
+          document.getElementById("usernameError").innerText =
+            "Username cannot be empty";
+          hasError = true;
+        } else {
+          document.getElementById("usernameError").innerText = "";
+        }
+
+        // Error checking for country
+        if (country === "") {
+          document.getElementById("countryError").innerText =
+            "Country cannot be empty";
+          hasError = true;
+        } else {
+          document.getElementById("countryError").innerText = "";
+        }
+
+        // Error checking for message
+        if (message === "") {
+          document.getElementById("messageError").innerText =
+            "Message cannot be empty";
+          hasError = true;
+        } else {
+          document.getElementById("messageError").innerText = "";
+        }
+
+        // Prevent form submission if there's any error
+        if (hasError) {
           return;
         }
 
@@ -85,11 +115,11 @@
           },
           body: JSON.stringify(formData),
         })
-          .then((response) => response.json()) // Parse the JSON response
+          .then((response) => response.json())
           .then((data) => {
             statusMSG = data.statusMSG;
             document.getElementById("statusMessage").innerHTML = statusMSG;
-            closeStatusMessage('flex')
+            closeStatusMessage("flex");
           })
           .catch((error) => {
             console.error(error);
@@ -99,11 +129,10 @@
 
       function closeStatusMessage(state) {
         const statusMessageElement = document.getElementById("StatusMSG");
-        if(state=="flex"){
-            statusMessageElement.style.display = "flex"; // Set display to none to hide
-        }
-        else {
-            statusMessageElement.style.display = "none"; // Set display to none to hide
+        if (state == "flex") {
+          statusMessageElement.style.display = "flex";
+        } else {
+          statusMessageElement.style.display = "none"; 
         }
       }
     </script>
@@ -119,10 +148,3 @@
     <%- include('partials/footer.ejs') %>
   </body>
 </html>
-
-<script>
-  // Prevent default form submission behavior
-  // form.addEventListener('submit', (event) => {
-  //     event.preventDefault();
-  // });
-</script>

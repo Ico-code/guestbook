@@ -106,6 +106,15 @@ p {
     transform: translateX(-50%)
 }
 
+
+#StatusMSG2 {
+    display: flex;
+    min-width: fit-content;
+    width: 500px;
+    min-height: fit-content;
+    transform: translateX(-50%)
+}
+
 #homepageCreateMSG {
     flex-direction: row;
 }

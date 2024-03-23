@@ -12,7 +12,7 @@
     <article id="contentContainer" class="secondary-background">
       <div class="p-3">
         <h2 class="mb-4">New Message Form</h2>
-        <form action="/newmessage" method="post">
+        <form id="messageForm" action="/newmessage" method="post">
           <div class="mb-3">
             <label for="username" class="form-label">Username:</label>
             <input
@@ -21,6 +21,7 @@
               id="username"
               name="username"
             />
+            <small id="usernameError" class="text-danger"></small>
           </div>
 
           <div class="mb-3">
@@ -31,6 +32,7 @@
               id="country"
               name="country"
             />
+            <small id="countryError" class="text-danger"></small>
           </div>
 
           <div class="mb-3">
@@ -42,15 +44,58 @@
               rows="4"
               cols="50"
             ></textarea>
+            <small id="messageError" class="text-danger"></small>
           </div>
-
           <button type="submit" class="btn btn-primary submitBTN">Send</button>
         </form>
       </div>
     </article>
     <script>
+      document
+        .getElementById("messageForm")
+        .addEventListener("submit", function (event) {
+          console.log("Testing")
+
+          let username = document.getElementById("username").value.trim();
+          let country = document.getElementById("country").value.trim();
+          let message = document.getElementById("message").value.trim();
+          let hasError = false;
+
+          // Error checking for username
+          if (username === "") {
+            document.getElementById("usernameError").innerText =
+              "Username cannot be empty";
+            hasError = true;
+          } else {
+            document.getElementById("usernameError").innerText = "";
+          }
+
+          // Error checking for country
+          if (country === "") {
+            document.getElementById("countryError").innerText =
+              "Country cannot be empty";
+            hasError = true;
+          } else {
+            document.getElementById("countryError").innerText = "";
+          }
+
+          // Error checking for message
+          if (message === "") {
+            document.getElementById("messageError").innerText =
+              "Message cannot be empty";
+            hasError = true;
+          } else {
+            document.getElementById("messageError").innerText = "";
+          }
+
+          // Prevent form submission if there's any error
+          if (hasError) {
+            event.preventDefault();
+          }
+        });
+
       function closeStatusMessage() {
-        const statusMessageElement = document.getElementById("StatusMSG");
+        const statusMessageElement = document.getElementById("StatusMSG2");
         if (statusMessageElement) {
           statusMessageElement.style.display = "none"; // Set display to none to hide
         } else {
@@ -60,7 +105,7 @@
     </script>
     <% if(statusMSG.length > 0){ %>
     <div
-      id="StatusMSG"
+      id="StatusMSG2"
       class="flex-column position-absolute mt-5 start-50 end-50 bottom-50 tertiary-background p-3 border border-secondary rounded align-items-center justify-content-center"
     >
       <p class="w-100 text-center mb-2"><%= statusMSG %></p>
