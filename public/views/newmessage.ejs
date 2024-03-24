@@ -50,69 +50,71 @@
         </form>
       </div>
     </article>
-    <script>
-      document
-        .getElementById("messageForm")
-        .addEventListener("submit", function (event) {
-          console.log("Testing")
-
-          let username = document.getElementById("username").value.trim();
-          let country = document.getElementById("country").value.trim();
-          let message = document.getElementById("message").value.trim();
-          let hasError = false;
-
-          // Error checking for username
-          if (username === "") {
-            document.getElementById("usernameError").innerText =
-              "Username cannot be empty";
-            hasError = true;
-          } else {
-            document.getElementById("usernameError").innerText = "";
-          }
-
-          // Error checking for country
-          if (country === "") {
-            document.getElementById("countryError").innerText =
-              "Country cannot be empty";
-            hasError = true;
-          } else {
-            document.getElementById("countryError").innerText = "";
-          }
-
-          // Error checking for message
-          if (message === "") {
-            document.getElementById("messageError").innerText =
-              "Message cannot be empty";
-            hasError = true;
-          } else {
-            document.getElementById("messageError").innerText = "";
-          }
-
-          // Prevent form submission if there's any error
-          if (hasError) {
-            event.preventDefault();
-          }
-        });
-
-      function closeStatusMessage() {
-        const statusMessageElement = document.getElementById("StatusMSG2");
-        if (statusMessageElement) {
-          statusMessageElement.style.display = "none"; // Set display to none to hide
-        } else {
-          console.warn('Element with ID "StatusMSG" not found.'); // Informative warning
-        }
-      }
-    </script>
     <% if(statusMSG.length > 0){ %>
+    <div id="StatusMSGWindown2" class="position-absolute top-0 start-0 end-0 bottom-0 seeThroughContainer">
     <div
-      id="StatusMSG2"
-      class="flex-column position-absolute mt-5 start-50 end-50 bottom-50 tertiary-background p-3 border border-secondary rounded align-items-center justify-content-center"
+      id="StatusMSG"
+      class="d-flex flex-column position-absolute start-50 end-50 bottom-50 tertiary-background p-3 border border-secondary rounded align-items-center justify-content-center"
     >
       <p class="w-100 text-center mb-2"><%= statusMSG %></p>
       <button class="btn btn-danger p-1" onclick="closeStatusMessage()">
         Close
       </button>
     </div>
+    </div>
     <%}%> <%- include('partials/footer.ejs') %>
   </body>
+  <script>
+    document
+      .getElementById("messageForm")
+      .addEventListener("submit", function (event) {
+        console.log("Testing")
+
+        let username = document.getElementById("username").value.trim();
+        let country = document.getElementById("country").value.trim();
+        let message = document.getElementById("message").value.trim();
+        let hasError = false;
+
+        // Error checking for username
+        if (username === "") {
+          document.getElementById("usernameError").innerText =
+            "Username cannot be empty";
+          hasError = true;
+        } else {
+          document.getElementById("usernameError").innerText = "";
+        }
+
+        // Error checking for country
+        if (country === "") {
+          document.getElementById("countryError").innerText =
+            "Country cannot be empty";
+          hasError = true;
+        } else {
+          document.getElementById("countryError").innerText = "";
+        }
+
+        // Error checking for message
+        if (message === "") {
+          document.getElementById("messageError").innerText =
+            "Message cannot be empty";
+          hasError = true;
+        } else {
+          document.getElementById("messageError").innerText = "";
+        }
+
+        // Prevent form submission if there's any error
+        if (hasError) {
+          event.preventDefault();
+        }
+      });
+
+    function closeStatusMessage() {
+      const statusMessageElement = document.getElementById("StatusMSGWindown2");
+      if (statusMessageElement) {
+        statusMessageElement.style.display = "none"; // Set display to none to hide
+      } else {
+        console.warn('Element with ID "StatusMSG" not found.'); // Informative warning
+      }
+    }
+  </script>
 </html>

@@ -53,98 +53,101 @@
         </form>
       </div>
     </article>
-    <script>
-      document
-        .getElementById("ajaxform")
-        .addEventListener("submit", (event) => {
-          event.preventDefault();
-        });
-
-      function submitForm() {
-        let form = document.getElementById("ajaxform");
-
-        let username = document.getElementById("username").value.trim();
-        let country = document.getElementById("country").value.trim();
-        let message = document.getElementById("message").value.trim();
-        let hasError = false;
-
-        // Error checking for username
-        if (username === "") {
-          document.getElementById("usernameError").innerText =
-            "Username cannot be empty";
-          hasError = true;
-        } else {
-          document.getElementById("usernameError").innerText = "";
-        }
-
-        // Error checking for country
-        if (country === "") {
-          document.getElementById("countryError").innerText =
-            "Country cannot be empty";
-          hasError = true;
-        } else {
-          document.getElementById("countryError").innerText = "";
-        }
-
-        // Error checking for message
-        if (message === "") {
-          document.getElementById("messageError").innerText =
-            "Message cannot be empty";
-          hasError = true;
-        } else {
-          document.getElementById("messageError").innerText = "";
-        }
-
-        // Prevent form submission if there's any error
-        if (hasError) {
-          return;
-        }
-
-        let formData = {
-          username: username,
-          country: country,
-          message: message,
-        };
-
-        // console.log(formData);
-
-        fetch("/ajaxmessage", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            statusMSG = data.statusMSG;
-            document.getElementById("statusMessage").innerHTML = statusMSG;
-            closeStatusMessage("flex");
-          })
-          .catch((error) => {
-            console.error(error);
-            alert("Failed to submit form. Please try again later.");
-          });
-      }
-
-      function closeStatusMessage(state) {
-        const statusMessageElement = document.getElementById("StatusMSG");
-        if (state == "flex") {
-          statusMessageElement.style.display = "flex";
-        } else {
-          statusMessageElement.style.display = "none"; 
-        }
-      }
-    </script>
-    <div
-      id="StatusMSG"
-      class="flex-column position-absolute mt-5 start-50 end-50 bottom-50 tertiary-background p-3 border border-secondary rounded align-items-center justify-content-center"
-    >
-      <p id="statusMessage" class="w-100 text-center mb-2"><%= statusMSG %></p>
-      <button class="btn btn-danger p-1" onclick="closeStatusMessage('none')">
-        Close
-      </button>
+    <div id="StatusMSGWindown" class="position-absolute top-0 start-0 end-0 bottom-0 seeThroughContainer">
+      <div
+        id="StatusMSG"
+        class="flex-column position-absolute start-50 end-50 bottom-50 tertiary-background p-3 border border-secondary rounded align-items-center justify-content-center"
+      >
+        <p id="statusMessage" class="w-100 text-center mb-2">
+          <%= statusMSG %>
+        </p>
+        <button class="btn btn-danger p-1" onclick="closeStatusMessage('none')">
+          Close
+        </button>
+      </div>
     </div>
     <%- include('partials/footer.ejs') %>
   </body>
+  <script>
+    document.getElementById("ajaxform").addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+
+    function submitForm() {
+      let form = document.getElementById("ajaxform");
+
+      let username = document.getElementById("username").value.trim();
+      let country = document.getElementById("country").value.trim();
+      let message = document.getElementById("message").value.trim();
+      let hasError = false;
+
+      // Error checking for username
+      if (username === "") {
+        document.getElementById("usernameError").innerText =
+          "Username cannot be empty";
+        hasError = true;
+      } else {
+        document.getElementById("usernameError").innerText = "";
+      }
+
+      // Error checking for country
+      if (country === "") {
+        document.getElementById("countryError").innerText =
+          "Country cannot be empty";
+        hasError = true;
+      } else {
+        document.getElementById("countryError").innerText = "";
+      }
+
+      // Error checking for message
+      if (message === "") {
+        document.getElementById("messageError").innerText =
+          "Message cannot be empty";
+        hasError = true;
+      } else {
+        document.getElementById("messageError").innerText = "";
+      }
+
+      // Prevent form submission if there's any error
+      if (hasError) {
+        return;
+      }
+
+      let formData = {
+        username: username,
+        country: country,
+        message: message,
+      };
+
+      // console.log(formData);
+
+      fetch("/ajaxmessage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          statusMSG = data.statusMSG;
+          document.getElementById("statusMessage").innerHTML = statusMSG;
+          document.getElementById("ajaxform").reset();
+          closeStatusMessage("block");
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Failed to submit form. Please try again later.");
+        });
+    }
+
+    function closeStatusMessage(state) {
+      const statusMessageElement = document.getElementById("StatusMSGWindown");
+      if (state == "block") {
+        statusMessageElement.style.display = "block";
+      } else {
+        statusMessageElement.style.display = "none";
+      }
+    }
+  </script>
 </html>

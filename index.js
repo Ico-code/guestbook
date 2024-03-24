@@ -53,7 +53,16 @@ app.get("*", (req, res) => {
 app.post("/newmessage", (req, res) => {
   // console.log(fileData)
   // console.log(req.body)
-  let idCounter = fileData.length;
+  let isUnique = false;
+
+  let idCounter = fileData.length + 1;
+
+  while (!isUnique) {
+    isUnique = fileData.every((item) => item.id != idCounter.toString());
+    if (!isUnique) {
+      idCounter++; // Increment if not unique
+    }
+  }
 
   const date = new Date(); // Get the current date and time
 
@@ -70,7 +79,7 @@ app.post("/newmessage", (req, res) => {
   });
 
   let newData = {
-    id: ++idCounter,
+    id: idCounter,
     username: req.body?.username,
     country: req.body?.country,
     message: req.body?.message,
@@ -94,8 +103,17 @@ app.post("/newmessage", (req, res) => {
 
 app.post("/ajaxmessage", (req, res) => {
   // console.log(fileData)
-  console.log(req.body);
-  let idCounter = fileData.length;
+  // console.log(req.body);
+  let isUnique = false;
+
+  let idCounter = fileData.length + 1;
+
+  while (!isUnique) {
+    isUnique = fileData.every((item) => item.id != idCounter.toString());
+    if (!isUnique) {
+      idCounter++; // Increment if not unique
+    }
+  }
 
   const date = new Date(); // Get the current date and time
 
@@ -112,14 +130,14 @@ app.post("/ajaxmessage", (req, res) => {
   });
 
   let newData = {
-    id: ++idCounter,
+    id: idCounter,
     username: req.body?.username,
     country: req.body?.country,
     message: req.body?.message,
     date: formattedDate,
   };
 
-  console.log(newData);
+  // console.log(newData);
 
   let formData = newData;
   fileData.push(formData);

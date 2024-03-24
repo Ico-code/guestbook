@@ -28,10 +28,10 @@
                     Message
                 </th>
             </tr>
-            <% data.forEach(message => { %>
+            <% data.forEach((message, index) => { %>
             <tr>
                 <td>
-                    <%= message.id %>
+                    <%= index %>
                 </td>
                 <td>
                     <%= message.username %>

@@ -92,18 +92,28 @@ p {
     margin-top: 0px;
 }
 
+.seeThroughContainer {
+    background-color: rgba(0, 0, 0, 0.201);
+    z-index: 10;
+}
+
 .submitBTN {
     width: 120px;
     font-weight: 600;
     font-size: 1.1rem;
 }
 
-#StatusMSG {
+#StatusMSGWindown {
     display: none;
+}
+
+#StatusMSG {
+    display: flex;
     min-width: fit-content;
     width: 500px;
     min-height: fit-content;
-    transform: translateX(-50%)
+    transform: translateX(-50%);
+    z-index: 100;
 }
 
 
@@ -184,5 +194,7 @@ h1,h2 {
     article{
         margin-top: 80px;
     }
-
+    #statusMSG {
+        min-width: 300px;
+    }
 }
