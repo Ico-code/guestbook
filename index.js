@@ -5,8 +5,6 @@ const path = require("path");
 const fs = require("fs");
 const bodyParser = require("body-parser");
 
-const errorChecker = require("./dataService");
-
 //JSON File Path
 const guestbookPath = path.join(__dirname, "public", "json", "guestbook.json");
 

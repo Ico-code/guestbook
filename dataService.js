@@ -1,7 +1,0 @@
-function collectDataFromForm(){
-
-}
-
-function CheckForDataCorrectness(){
-    
-}
