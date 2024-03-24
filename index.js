@@ -41,11 +41,7 @@ app.get("/ajaxmessage", (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res
-    .status(404)
-    .send(
-      "We could not find the content you were looking for. \nPlease return to the start page"
-    );
+  res.render("home");
 });
 
 app.post("/newmessage", (req, res) => {
